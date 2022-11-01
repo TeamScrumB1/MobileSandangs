@@ -5,6 +5,9 @@ import 'package:sandangs/models/cart_item_model.dart';
 import 'package:sandangs/models/produk_model.dart';
 import 'package:sandangs/widget/db_helper/db_cart_produk.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
+import 'package:cool_alert/cool_alert.dart';
+import 'package:sandangs/pages/fitting_room.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BottomAppbarDetailProduk extends StatefulWidget {
   const BottomAppbarDetailProduk({Key? key, required this.detail}) : super(key: key);
@@ -17,6 +20,10 @@ class BottomAppbarDetailProduk extends StatefulWidget {
 class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
   DbHelperCart db = DbHelperCart();
   List<CartItem> listKeranjang = [];
+
+  void _launchURL(String _url) async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +57,11 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                     color: secondaryColor,
                   ),
                   iconSize: 25,
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => FittingRoom())
+                    );
+                  },
                 ),
               ),
               Container(
@@ -73,6 +84,15 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                       _getAllKeranjang();
                       keranjang.jumlahplus();
                     });
+                    CoolAlert.show(
+                      context: context,
+                      type: CoolAlertType.success,
+                      title: 'Berhasil',
+                      text: 'Dimasukkan ke Keranjang',
+                      backgroundColor: Colors.grey,
+                      confirmBtnColor: secondaryColor,
+                      confirmBtnTextStyle: TextStyle(color: Colors.white, fontWeight:FontWeight.w600,fontSize: 18.0),
+                    );
                   },
                 ),
               ),
@@ -85,7 +105,9 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                   color: orangePrice,
                 ),
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                  },
                   child: Text(
                     'Beli Sekarang',
                     style: TextStyle(

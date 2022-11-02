@@ -6,7 +6,6 @@ import 'package:sandangs/models/produk_model.dart';
 import 'package:sandangs/widget/db_helper/db_cart_produk.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
 import 'package:cool_alert/cool_alert.dart';
-import 'package:sandangs/pages/fitting_room.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BottomAppbarDetailProduk extends StatefulWidget {
@@ -43,28 +42,6 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: size.width*0.17,
-                alignment: Alignment.center,
-                margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: secondaryColor),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.accessibility_outlined,
-                    color: secondaryColor,
-                  ),
-                  iconSize: 25,
-                  onPressed: (){
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FittingRoom())
-                    );
-                  },
-                ),
-              ),
-              Container(
                 width: size.width*0.18,
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(horizontal:5,vertical: 5),
@@ -97,7 +74,7 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                 ),
               ),
               Container(
-                width: size.width*0.5,
+                width: size.width*0.72,
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(horizontal:5,vertical: 5),
                 decoration: BoxDecoration(

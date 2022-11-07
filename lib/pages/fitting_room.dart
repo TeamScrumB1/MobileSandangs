@@ -37,7 +37,6 @@ class _FittingRoomState extends State<FittingRoom> {
     String busanaAtasan = "";
     String busanaBawahan = "";
 
-
     setState(() {
       busanaAtasan = fittingRoom.getAtasan();
       busanaBawahan = fittingRoom.getBawahan();
@@ -101,7 +100,7 @@ class _FittingRoomState extends State<FittingRoom> {
                                 height: 200,
                                 child: busanaAtasan == 'lib/assets/images/iconAtasan.png' ?
                                        Image.asset('lib/assets/images/jaket.png')
-                                       :Image.network(busanaAtasan),
+                                       : Image.network(busanaAtasan),
                               ),
                             ),
                           ),

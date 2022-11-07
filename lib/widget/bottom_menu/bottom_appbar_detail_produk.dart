@@ -5,6 +5,8 @@ import 'package:sandangs/models/cart_item_model.dart';
 import 'package:sandangs/models/produk_model.dart';
 import 'package:sandangs/widget/db_helper/db_cart_produk.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
+import 'package:cool_alert/cool_alert.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BottomAppbarDetailProduk extends StatefulWidget {
   const BottomAppbarDetailProduk({Key? key, required this.detail}) : super(key: key);
@@ -17,6 +19,10 @@ class BottomAppbarDetailProduk extends StatefulWidget {
 class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
   DbHelperCart db = DbHelperCart();
   List<CartItem> listKeranjang = [];
+
+  void _launchURL(String _url) async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,24 +41,6 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: size.width*0.17,
-                alignment: Alignment.center,
-                margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: secondaryColor),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.accessibility_outlined,
-                    color: secondaryColor,
-                  ),
-                  iconSize: 25,
-                  onPressed: (){},
-                ),
-              ),
               Container(
                 width: size.width*0.18,
                 alignment: Alignment.center,
@@ -73,11 +61,20 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                       _getAllKeranjang();
                       keranjang.jumlahplus();
                     });
+                    CoolAlert.show(
+                      context: context,
+                      type: CoolAlertType.success,
+                      title: 'Berhasil',
+                      text: 'Dimasukkan ke Keranjang',
+                      backgroundColor: Colors.grey,
+                      confirmBtnColor: secondaryColor,
+                      confirmBtnTextStyle: TextStyle(color: Colors.white, fontWeight:FontWeight.w600,fontSize: 18.0),
+                    );
                   },
                 ),
               ),
               Container(
-                width: size.width*0.5,
+                width: size.width*0.72,
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(horizontal:5,vertical: 5),
                 decoration: BoxDecoration(
@@ -85,7 +82,9 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                   color: orangePrice,
                 ),
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                  },
                   child: Text(
                     'Beli Sekarang',
                     style: TextStyle(

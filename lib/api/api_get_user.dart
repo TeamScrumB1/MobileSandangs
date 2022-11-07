@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:sandangs/models/user_model.dart';
-import 'package:sandangs/variables.dart';
 import 'dart:convert';
 import 'package:sandangs/widget/db_helper/db_user.dart';
 

@@ -5,7 +5,7 @@ import 'package:sandangs/models/produk_model.dart';
 class ApiServiceProduct{
   Future<Produk> topHeadLines() async {
     final response = await http.get(
-        Uri.parse('https://api.yufagency.com/produk_desc_rating')
+        Uri.parse('https://api.yufagency.com/produk')
     );
 
     if(response.statusCode == 200){

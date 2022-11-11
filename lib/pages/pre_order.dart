@@ -352,7 +352,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                                 onTap: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                        return DetailProject();
+                                        return DetailProject(project: project!);
                                         // return DetailProjectUser(project :project!);
                                       }));
                                 },

@@ -8,6 +8,7 @@ import 'package:sandangs/widget/provider/cart_provider.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
 class BottomAppbarDetailProduk extends StatefulWidget {
   const BottomAppbarDetailProduk({Key? key, required this.detail}) : super(key: key);
   final ProdukElement detail;
@@ -77,7 +78,7 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                 ),
               ),
               Container(
-                width: size.width*0.72,
+                width: MediaQuery.of(context).size.width*0.70,
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(horizontal:5,vertical: 5),
                 decoration: BoxDecoration(

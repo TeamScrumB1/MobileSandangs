@@ -83,7 +83,15 @@ class _FittingRoomState extends State<FittingRoom> {
                                 height: 200,
                                 child: busanaBawahan == 'lib/assets/images/iconBawahan.png' ?
                                        Image.asset('lib/assets/images/jeans.png')
-                                       : Image.network(busanaBawahan),
+                                       : Image.network(busanaBawahan,
+                                  loadingBuilder: (BuildContext context, Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -100,7 +108,15 @@ class _FittingRoomState extends State<FittingRoom> {
                                 height: 200,
                                 child: busanaAtasan == 'lib/assets/images/iconAtasan.png' ?
                                        Image.asset('lib/assets/images/jaket.png')
-                                       : Image.network(busanaAtasan),
+                                       : Image.network(busanaAtasan,
+                                  loadingBuilder: (BuildContext context, Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -140,8 +156,7 @@ class _FittingRoomState extends State<FittingRoom> {
                                        : Image.network(busanaBawahan),
                               ),
                             ),
-                          ),
-                        ],
+                          )],
                       )
                   ),
                   Container(

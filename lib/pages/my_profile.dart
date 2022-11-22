@@ -219,12 +219,43 @@ class _MyProfileState extends State<MyProfile> {
                         ),
                         child: TextButton(
                           onPressed: (){
-                            AuthService.signOut();
-                            _deleteUser();
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const LoginScreen())
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Container(
+                                  child: AlertDialog(
+                                    title: Text('Logout'),
+                                    content: Text('Anda yakin ingin Logout?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('CANCEL', style: TextStyle(
+                                            color: secondaryColor
+                                        ),),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          AuthService.signOut();
+                                          _deleteUser();
+                                          Navigator.push(context,
+                                              MaterialPageRoute(builder: (context) => const LoginScreen())
+                                          );
+                                        },
+                                        child: Text('LOGOUT',
+                                          style: TextStyle(
+                                              color: Colors.red
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                             );
                           },
+
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [

@@ -5,8 +5,8 @@ import 'package:sandangs/models/cart_item_model.dart';
 import 'package:sandangs/models/produk_model.dart';
 import 'package:sandangs/widget/db_helper/db_cart_produk.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
-import 'package:cool_alert/cool_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 
 class BottomAppbarDetailProduk extends StatefulWidget {
@@ -57,20 +57,12 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
                   ),
                   iconSize: 25,
                   onPressed: (){
+                    EasyLoading.showSuccess('Dimasukkan ke Keranjang');
                     upsertKeranjang(widget.detail.nama);
                     setState(() {
                       _getAllKeranjang();
                       keranjang.jumlahplus();
                     });
-                    CoolAlert.show(
-                      context: context,
-                      type: CoolAlertType.success,
-                      title: 'Berhasil',
-                      text: 'Dimasukkan ke Keranjang',
-                      backgroundColor: Colors.grey,
-                      confirmBtnColor: secondaryColor,
-                      confirmBtnTextStyle: TextStyle(color: Colors.white, fontWeight:FontWeight.w600,fontSize: 18.0),
-                    );
                   },
                 ),
               ),
@@ -103,6 +95,7 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
       ),
     );
   }
+
   Future<void> upsertKeranjang(String Nama) async {
     bool status = false;
     CartItem? keranjang;

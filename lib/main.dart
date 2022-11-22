@@ -5,6 +5,7 @@ import 'package:sandangs/pages/login.dart';
 import 'package:sandangs/routes.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
 import 'package:sandangs/widget/provider/fitting_room_provider.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: splashRoute,
         routes: routes,
+        builder: EasyLoading.init(),
         home: const LoginScreen(),
       ),
     );

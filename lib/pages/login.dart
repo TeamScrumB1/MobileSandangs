@@ -265,6 +265,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () async {
                                     if(_formKey.currentState!.validate()){
                                       try{
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return Center(child: CircularProgressIndicator());
+                                            }
+                                        );
                                         user = await AuthService().signIn(email: _email.text, password: _pass.text);
                                       } finally{
                                         if(user != null){
@@ -285,6 +291,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 MaterialPageRoute(builder: (context) => const BottomMenu())
                                             );
                                           } else {
+                                            Navigator.pop(context);
                                             Fluttertoast.showToast(
                                               msg: "Please verify your email first",
                                               toastLength: Toast.LENGTH_SHORT,
@@ -296,6 +303,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             );
                                           }
                                         } else {
+                                          Navigator.pop(context);
                                           Fluttertoast.showToast(
                                             msg: "Username or Password Incorrect",
                                             toastLength: Toast.LENGTH_SHORT,

@@ -11,6 +11,7 @@ import 'package:sandangs/pages/detail_project.dart';
 import 'package:sandangs/variables.dart';
 import 'package:sandangs/widget/card/project_card.dart';
 import 'package:http/http.dart' as http;
+import '../widget/bottom_menu/bottom_menu.dart';
 
 class PreOrder extends StatefulWidget {
   const PreOrder({Key? key}) : super(key: key);
@@ -53,7 +54,39 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
             icon: const Icon(Icons.arrow_back_ios_rounded),
             color: secondaryColor,
             onPressed: (){
-              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    child: AlertDialog(
+                      title: Text('Keluar'),
+                      content: Text('Anda yakin ingin meninggalkan page ini?'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('CANCEL', style: TextStyle(
+                              color: secondaryColor
+                          ),),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const BottomMenu())
+                            );
+                          },
+                          child: Text('YES',
+                            style: TextStyle(
+                                color: Colors.red
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
             },
           ),
           title: Text(
@@ -206,7 +239,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     Text(
                       'Lampiran',
                       style: TextStyle(
@@ -303,8 +336,9 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                               )
                             ]
                         )
-                    ): SizedBox(height: 5),
+                    ): SizedBox(height: 10),
                     Container(
+                      margin: EdgeInsets.only(top: 10),
                       height: 40,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -436,11 +470,18 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
     request.fields['id_user'] = idUserGlob ;
     var pic = await http.MultipartFile.fromPath('lampiran', _file!.path);
     request.files.add(pic);
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(child: CircularProgressIndicator());
+        }
+    );
 
     await request.send().then((result) {
       http.Response.fromStream(result).then((response) {
         var message = jsonDecode(response.body);
         if (message == "Error") {
+          Navigator.pop(context);
           Fluttertoast.showToast(
             msg: "Data Input Failed",
             toastLength: Toast.LENGTH_SHORT,
@@ -456,6 +497,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
               })
           );
         } else if (message == "Blank")  {
+          Navigator.pop(context);
           Fluttertoast.showToast(
             msg: "Please Fill Out The Entire Form",
             toastLength: Toast.LENGTH_SHORT,
@@ -471,6 +513,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
               })
           );
         } else {
+          Navigator.pop(context);
           Fluttertoast.showToast(
             msg: "Preorder Successful",
             toastLength: Toast.LENGTH_SHORT,

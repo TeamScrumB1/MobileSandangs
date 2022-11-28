@@ -1,5 +1,4 @@
 import 'package:sandangs/api/api_kategori.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sandangs/pages/detail_produk.dart';
 import 'package:sandangs/widget/card/produk_card.dart';
@@ -15,21 +14,17 @@ class GridViewKategoriProduk extends StatefulWidget {
   String namaKategori;
 
   @override
-  State<GridViewKategoriProduk> createState() => _GridViewKategoriProdukState( namaKategori: namaKategori);
+  State<GridViewKategoriProduk> createState() => _GridViewKategoriProdukState();
 }
 
 class _GridViewKategoriProdukState extends State<GridViewKategoriProduk> {
-
-  _GridViewKategoriProdukState({
-    required this.namaKategori,
-  });
-  String namaKategori;
   late Future<Produk> _produk;
 
   @override
   void initState(){
     super.initState();
-    _produk = ApiServiceKategori(namaKategori: namaKategori).topHeadlines();
+    print(widget.namaKategori);
+    _produk = ApiServiceKategori(namaKategori: widget.namaKategori).topHeadlines();
   }
 
   @override

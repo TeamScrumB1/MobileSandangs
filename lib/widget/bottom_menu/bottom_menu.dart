@@ -7,16 +7,22 @@ import 'package:sandangs/widget/authentication/shared_preferences.dart';
 import 'package:sandangs/widget/bottom_menu/list_menu.dart';
 
 class BottomMenu extends StatefulWidget {
-  const BottomMenu({Key? key}) : super(key: key);
+  BottomMenu({Key? key, required this.currentScreen, required this.currentTab}) : super(key: key);
+  Widget currentScreen;
+  int currentTab;
 
   @override
-  State<BottomMenu> createState() => _BottomMenuState();
+  State<BottomMenu> createState() => _BottomMenuState(currentTab: currentTab,currentScreen: currentScreen);
 }
 
 class _BottomMenuState extends State<BottomMenu> {
+  _BottomMenuState({required this.currentTab,required this.currentScreen});
+  Widget currentScreen;
+  int currentTab;
+
   final PageStorageBucket bucket = PageStorageBucket();
-  ListMenu statusLayar = ListMenu(0, const HomePages());
   final PrefServices _prefService = PrefServices();
+  late ListMenu statusLayar;
 
   @override
   void initState() {
@@ -25,6 +31,7 @@ class _BottomMenuState extends State<BottomMenu> {
       var userData = value;
       print('username : ' + userData.username.toString());
     });
+    statusLayar = ListMenu(currentTab, currentScreen);
     super.initState();
   }
 

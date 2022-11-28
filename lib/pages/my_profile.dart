@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sandangs/constant.dart';
 import 'package:sandangs/models/user_model.dart';
+import 'package:sandangs/pages/edit_profile.dart';
 import 'package:sandangs/pages/login.dart';
 import 'package:sandangs/widget/authentication/auth_service.dart';
 import 'package:sandangs/widget/db_helper/db_user.dart';
@@ -131,7 +132,12 @@ class _MyProfileState extends State<MyProfile> {
                                 fontWeight: FontWeight.w700,
                                 fontFamily: 'Poppins'),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              (context),
+                              MaterialPageRoute(builder: (context) => EditMyProfile()),
+                            );
+                            },
                           child: const Text('Edit Profile'),
                         ),
                       ),

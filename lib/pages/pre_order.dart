@@ -8,6 +8,7 @@ import 'package:sandangs/api/api_project_order.dart';
 import 'package:sandangs/constant.dart';
 import 'package:sandangs/models/project_model.dart';
 import 'package:sandangs/pages/detail_project.dart';
+import 'package:sandangs/pages/home_page.dart';
 import 'package:sandangs/variables.dart';
 import 'package:sandangs/widget/card/project_card.dart';
 import 'package:http/http.dart' as http;
@@ -73,7 +74,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                         TextButton(
                           onPressed: () {
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const BottomMenu())
+                                MaterialPageRoute(builder: (context) => BottomMenu(currentTab: 0,currentScreen: HomePages()))
                             );
                           },
                           child: Text('YES',

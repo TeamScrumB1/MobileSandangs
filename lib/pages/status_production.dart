@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sandangs/constant.dart';
 import 'package:sandangs/widget/appbar_custom/appbar.dart';
 import 'package:sandangs/widget/provider/cart_provider.dart';
+import 'package:sandangs/pages/track_order.dart';
 
 class StatusProduction extends StatefulWidget {
   const StatusProduction({Key? key}) : super(key: key);
@@ -58,7 +59,7 @@ class _StatusProductionState extends State<StatusProduction> {
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w600,
-                                        color: secondaryColor,
+                                        color: orangePrice,
                                     )
                                 ),
                               ],
@@ -76,7 +77,8 @@ class _StatusProductionState extends State<StatusProduction> {
                                     color: Colors.grey
                                 )
                             ),
-                            Container(
+                            InkWell(
+                            child: Container(
                               height: 30,
                               width: 100,
                               alignment: Alignment.center,
@@ -90,6 +92,14 @@ class _StatusProductionState extends State<StatusProduction> {
                                   color: Colors.white,
                                 ),
                               ),
+                            ),
+                            onTap: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return TrackOrder();
+                                    // return DetailProjectUser(project :project!);
+                                  }));
+                            },
                             ),
                           ],
                         ),
@@ -133,7 +143,7 @@ class _StatusProductionState extends State<StatusProduction> {
                                     style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
-                                      color: secondaryColor,
+                                      color: orangePrice,
                                     )
                                 ),
                               ],
@@ -151,7 +161,8 @@ class _StatusProductionState extends State<StatusProduction> {
                                     color: Colors.grey
                                 )
                             ),
-                            Container(
+                            InkWell(
+                            child: Container(
                               height: 30,
                               width: 100,
                               alignment: Alignment.center,
@@ -166,80 +177,13 @@ class _StatusProductionState extends State<StatusProduction> {
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 2,
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  margin: EdgeInsets.only(top: 10, bottom: 10),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                    'Batik SMAN 1 Sidoarjo',
-                                    style: TextStyle(
-                                        fontSize: 16, fontWeight: FontWeight.w600
-                                    )
-                                ),
-                                SizedBox(height: 10),
-                                Text(
-                                    "Biaya : Rp 35.250.000",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: secondaryColor,
-                                    )
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                                '12-07-2022',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey
-                                )
-                            ),
-                            Container(
-                              height: 30,
-                              width: 100,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: secondaryColor),
-                              ),
-                              child: Text(
-                                'On Progress',
-                                style: TextStyle(
-                                  color: secondaryColor,
-                                ),
-                              ),
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return TrackOrder();
+                                      // return DetailProjectUser(project :project!);
+                                    }));
+                              },
                             ),
                           ],
                         ),

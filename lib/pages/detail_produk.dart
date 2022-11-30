@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sandangs/constant.dart';
+import 'package:sandangs/models/cart_item_model.dart';
 import 'package:sandangs/models/produk_model.dart';
 import 'package:sandangs/widget/appbar_custom/appbar_back.dart';
 import 'package:sandangs/widget/bottom_menu/bottom_appbar_detail_produk.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:sandangs/widget/db_helper/db_cart_produk.dart';
+import 'package:sandangs/widget/provider/cart_provider.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail}) : super(key: key);
@@ -15,9 +19,13 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
+  DbHelperCart db = DbHelperCart();
+  List<CartItem> listKeranjang = [];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       bottomNavigationBar: BottomAppbarDetailProduk(detail: widget.detail),
       appBar: const AppBarBack(),
@@ -214,5 +222,14 @@ class _DetailProductState extends State<DetailProduct> {
         ),
       ),
     );
+  }
+  Future<void> _getAllKeranjang() async {
+    var list = await db.getAllKeranjang();
+    setState(() {
+      listKeranjang.clear();
+      list!.forEach((keranjang) {
+        listKeranjang.add(CartItem.fromMap(keranjang));
+      });
+    });
   }
 }

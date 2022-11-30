@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sandangs/api/api_get_user.dart';
 import 'package:sandangs/constant.dart';
+import 'package:sandangs/pages/home_page.dart';
 import 'package:sandangs/pages/sign_up.dart';
 import 'package:sandangs/widget/authentication/auth_service.dart';
 import 'package:sandangs/widget/authentication/shared_preferences.dart';
@@ -288,7 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             _prefService.createCache(dataUser!);
 
                                             Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) => const BottomMenu())
+                                                MaterialPageRoute(builder: (context) => BottomMenu(currentScreen: HomePages(),currentTab: 0,))
                                             );
                                           } else {
                                             Navigator.pop(context);

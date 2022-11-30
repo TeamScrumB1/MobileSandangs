@@ -64,7 +64,7 @@ class CardProject extends StatelessWidget {
                     onPressed: (){
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return DetailProject();
+                            return DetailProject(project: project);
                             // return DetailProjectUser(project: project);
                           })
                       );

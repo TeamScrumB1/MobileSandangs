@@ -20,7 +20,6 @@ class BottomAppbarDetailProduk extends StatefulWidget {
 class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
   DbHelperCart db = DbHelperCart();
   List<CartItem> listKeranjang = [];
-
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
   }
@@ -28,8 +27,12 @@ class _BottomAppbarDetailProdukState extends State<BottomAppbarDetailProduk> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var keranjang = Provider.of<KeranjangProv>(context);
+    var keranjang = Provider.of<KeranjangProv>(context,listen: true);
 
+    setState(() {
+      _getAllKeranjang();
+      keranjang.jumlahplus();
+    });
     return BottomAppBar(
       elevation: 1,
       child: Container(
